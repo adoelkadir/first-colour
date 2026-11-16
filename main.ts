@@ -1,12 +1,12 @@
-import { copyFileSync, mkdirSync, statSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { copyFileSync, mkdirSync, statSync } from 'node:fs';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const sourceDir = dirname(fileURLToPath(import.meta.url));
+const srcDir = dirname(fileURLToPath(import.meta.url));
 const dest = process.env.OUTPUT_DIR
-  ? join(process.env.OUTPUT_DIR, "entry.png")
-  : "/output/entry.png";
+  ? join(process.env.OUTPUT_DIR, 'entry.png')
+  : '/output/entry.png';
 
 mkdirSync(dirname(dest), { recursive: true });
-copyFileSync(join(sourceDir, "entry.png"), dest);
+copyFileSync(join(srcDir, 'entry.png'), dest);
 console.log(`First Colour delivered: ${statSync(dest).size} bytes to ${dest}`);
